@@ -4,7 +4,7 @@ export default function LandingPage(){
     return(
         <div className="">
             <img 
-                src="https://expense-tracker-six-alpha.vercel.app/src/components/LandingPage/LandingPagePic.png"
+                src="https://github.com/PratikJasl/Expense-Tracker/blob/main/frontend/src/components/LandingPage/LandingPagePic.jpeg"
                 alt="picture"
                 className="h-64 p-4 sm:h-80 md:h-80 lg:h-96"
             />
