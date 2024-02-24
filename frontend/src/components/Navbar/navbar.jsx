@@ -10,7 +10,7 @@ export default function Navigation(){
     const username = userInfo?.username;
 
     function logout(){
-        fetch('http://localhost:3000/logout',{
+        fetch('https://expense-tracker-api-iota.vercel.app/logout',{
           method: 'POST',
           credentials: 'include'
         });
@@ -20,7 +20,7 @@ export default function Navigation(){
     return(
         <Navbar className='bg-white w-full fixed top-0 shadow-sm z-50'>
         <Container>
-            <img src="src/components/Navbar/logo.jpg" className='h-8 rounded-full'/>
+            <img src="frontend/src/components/Navbar/logo.jpg" className='h-8 rounded-full'/>
             <Navbar.Brand 
                 className="me-auto text-1xl font-bold text-green-600 ml-2"
                 >

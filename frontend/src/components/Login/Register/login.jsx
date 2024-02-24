@@ -12,7 +12,7 @@ export default function Login(){
     async function login(ev){
         try{
             ev.preventDefault();
-            const response = await fetch('http://localhost:3000/Login',{
+            const response = await fetch('https://expense-tracker-api-iota.vercel.app/Login',{
                 method: 'Post',
                 body: JSON.stringify({username, password}),
                 headers: {'Content-type':'application/json'},

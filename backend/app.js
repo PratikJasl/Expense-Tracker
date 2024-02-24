@@ -15,7 +15,7 @@ const app = express();
 
 //@dev Middlewares.
 app.use(express.json());
-app.use(cors({credentials:true, origin:'http://localhost:5173'}));
+app.use(cors({credentials:true, origin:'https://expense-tracker-six-alpha.vercel.app'}));
 
 
 //@dev Connect with MongoDb.

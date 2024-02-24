@@ -24,7 +24,7 @@ export default function IncomeForm(){
     const handleSubmit = async(e) =>{
         try{ 
             e.preventDefault();
-            const response = await fetch('http://localhost:3000/addIncome',{
+            const response = await fetch('https://expense-tracker-api-iota.vercel.app/addIncome',{
                 method: 'Post',
                 body: JSON.stringify({title, amount, date, category, description}),
                 headers: {'Content-Type': 'application/json'},

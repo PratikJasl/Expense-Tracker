@@ -1,6 +1,6 @@
 export default async function fetchExpense(){
     try{
-        const response = await fetch('http://localhost:3000/getExpenses',{
+        const response = await fetch('https://expense-tracker-api-iota.vercel.app/getExpenses',{
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include' 

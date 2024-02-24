@@ -25,7 +25,7 @@ export default function ExpenseForm(){
     const handleSubmit = async(e) =>{
         try{
             e.preventDefault();
-            const response = await fetch('http://localhost:3000/addExpenses',{
+            const response = await fetch('https://expense-tracker-api-iota.vercel.app/addExpenses',{
                 method: 'Post',
                 body: JSON.stringify({title, amount, date, category, description}),
                 headers: {'Content-Type': 'application/json'},
