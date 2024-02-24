@@ -41,7 +41,7 @@ export default function Dashboard(){
                 <div className="border rounded-xl shadow-md m-4 p-4 h-96 ">
                     <div className="flex text-center justify-center items-center mb-3">
                         <img 
-                            src="src/assets/avatar.png"
+                            src="https://turquoise-odd-lemur-518.mypinata.cloud/ipfs/QmcNYT2XfFN5bTkWPMob5yMh4sGkajGpfqqGzWVLFXgXPq"
                             alt="picture"
                             className="h-12 m-1 bg-green-50 rounded-full shadow-md border-3 border-green-600"
                         />
