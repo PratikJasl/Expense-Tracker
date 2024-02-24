@@ -20,7 +20,7 @@ export default function Navigation(){
     return(
         <Navbar className='bg-white w-full fixed top-0 shadow-sm z-50'>
         <Container>
-            <img src="https://expense-tracker-six-alpha.vercel.app/frontend/src/components/Navbar/logo.jpg" className='h-8 rounded-full'/>
+            <img src="https://turquoise-odd-lemur-518.mypinata.cloud/ipfs/QmRECCcE2y4qm4j92MGm3NxhcHfuZLYJ3iRTe7oc8FEgCQ" className='h-8 rounded-full'/>
             <Navbar.Brand 
                 className="me-auto text-1xl font-bold text-green-600 ml-2"
                 >
