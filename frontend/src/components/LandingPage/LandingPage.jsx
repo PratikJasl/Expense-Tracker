@@ -4,7 +4,7 @@ export default function LandingPage(){
     return(
         <div className="">
             <img 
-                src="https://github.com/PratikJasl/Expense-Tracker/blob/main/frontend/src/components/LandingPage/LandingPagePic.jpeg"
+                src="https://turquoise-odd-lemur-518.mypinata.cloud/ipfs/QmXoZuiUrGZU6U2GNZdwp11ZGKKLHVR9c3WCVW4jYg7vPS"
                 alt="picture"
                 className="h-64 p-4 sm:h-80 md:h-80 lg:h-96"
             />

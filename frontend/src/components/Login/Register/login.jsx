@@ -40,10 +40,10 @@ export default function Login(){
     return(
         <form className="flex flex-col justify-center text-center items-center gap-1.5 mt-4 p-1" onSubmit={login}>
             <img 
-                src="src/components/Navbar/logo.jpg"
+                src="https://turquoise-odd-lemur-518.mypinata.cloud/ipfs/QmRECCcE2y4qm4j92MGm3NxhcHfuZLYJ3iRTe7oc8FEgCQ"
                 className="h-32 p-4 sm:h-40 md:h-48 lg:h-56 rounded-full"
             />
-            <h1 className="text-3xl font-bold text-green-600 ">Login</h1>
+            <h1 className="text-3xl font-bold text-green-600 ">Login Now</h1>
             <input 
                 className="border-2 m-1 rounded-md text-center"
                 type="text"
