@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { useRecoilState } from "recoil";
 import { IncomeFormSubmit } from "../../Atom/selection";
+import { UserInfo } from "../../Atom/userData";
 
 export default function IncomeForm(){
     const [input, setInput] = useState({
@@ -17,6 +18,11 @@ export default function IncomeForm(){
 
     const { title, amount, date, category, description } = input;
 
+    const userInfo = useRecoilValue(UserInfo);
+    console.log('The Userinfo:', userInfo);
+    const userID = userInfo.id;
+    console.log('the User ID is:', userID);
+
     const handleInput = (name, value)=>{
         setInput({...input, [name]: value});
     }
@@ -26,7 +32,7 @@ export default function IncomeForm(){
             e.preventDefault();
             const response = await fetch('https://expense-tracker-api-iota.vercel.app/addIncome',{
                 method: 'Post',
-                body: JSON.stringify({title, amount, date, category, description}),
+                body: JSON.stringify({title, amount, date, category, description, userID}),
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include' 
             })
@@ -39,7 +45,7 @@ export default function IncomeForm(){
                     category: '',
                     description: '',
                 });
-                setFormSubmitted(true);
+                setFormSubmitted(prev => !prev);
             }
             else{
                 alert('Error Adding income');

@@ -5,6 +5,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { IncomeFormSubmit } from "../../Atom/selection";
 import { display } from "../../Atom/display";
 import { IncomesArray } from "../../Atom/incomes";
+import { UserInfo } from "../../Atom/userData";
 
 export default function Incomes(){
 
@@ -15,11 +16,13 @@ export default function Incomes(){
     const [forceUpdate, setForceUpdate] = useState(false);
     const displayForm = useRecoilValue(display);
     const setIncomesArray = useSetRecoilState(IncomesArray);
-   
+    const userInfo = useRecoilValue(UserInfo);
+    const userID = userInfo.id;
+
     useEffect(()=>{
         async function fetchData(){
             try {
-                const data = await fetchIncome();
+                const data = await fetchIncome(userID);
                 setIncomeArray(data);
                 setIncomesArray(data);
                 GetTotal();
@@ -55,7 +58,8 @@ export default function Incomes(){
     async function GetTotal(){
         try {
             const response = await fetch('https://expense-tracker-api-iota.vercel.app/getTotalIncome',{
-                method: 'GET',
+                method: 'POST',
+                body: JSON.stringify({userID}),
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include'
             })
@@ -77,7 +81,7 @@ export default function Incomes(){
         <div>
             <div className=" mb-2 w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <h1 className="text-xl font-bold">Total Income: 
-                <span className="text-green-600"> <i className="fa-solid fa-indian-rupee-sign"></i> {totalIncome ? totalIncome : "Loading..."} </span></h1>
+                <span className="text-green-600"> <i className="fa-solid fa-indian-rupee-sign"></i> {totalIncome != null ? totalIncome : "Loading..."} </span></h1>
             </div>
             <div className="flex flex-wrap sm:flex-nowrap justify-center sm:gap-2 lg:gap-5 xl:gap-32">
                 {!displayForm && (

@@ -5,6 +5,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { ExpenseFormSubmit } from "../../Atom/selection";
 import { displayExForm } from "../../Atom/display";
 import { ExpensesArray } from "../../Atom/incomes";
+import { UserInfo } from "../../Atom/userData";
 
 export default function Expenses(){
 
@@ -15,11 +16,13 @@ export default function Expenses(){
     const [forceUpdate, setForceUpdate] = useState(false);
     const displayForm = useRecoilValue(displayExForm);
     const setExpensesArray = useSetRecoilState(ExpensesArray);
-   
+    const userInfo = useRecoilValue(UserInfo);
+    const userID = userInfo.id;
+
     useEffect(()=>{
         async function fetchData(){
             try {
-                const data = await fetchExpense();
+                const data = await fetchExpense(userID);
                 setExpenseArray(data);
                 setExpensesArray(data);
                 GetTotal();
@@ -55,7 +58,8 @@ export default function Expenses(){
     async function GetTotal(){
         try {
             const response = await fetch('https://expense-tracker-api-iota.vercel.app/getTotalExpense',{
-                method: 'GET',
+                method: 'POST',
+                body: JSON.stringify({userID}),
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include'
             })
@@ -77,7 +81,7 @@ export default function Expenses(){
         <div>
             <div className=" mb-2 w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <h1 className="text-xl font-bold">Total Expense: 
-                    <span className="text-green-600"> <i className="fa-solid fa-indian-rupee-sign"></i> {totalExpense ? totalExpense : 'Loading...'}</span></h1>
+                    <span className="text-green-600"> <i className="fa-solid fa-indian-rupee-sign"></i> {totalExpense != null ? totalExpense : 'Loading...'}</span></h1>
             </div>
             <div className="flex flex-wrap sm:flex-nowrap justify-center sm:gap-2 lg:gap-5 xl:gap-32">
                 {!displayForm && (

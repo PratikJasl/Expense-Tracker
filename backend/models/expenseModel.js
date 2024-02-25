@@ -6,7 +6,8 @@ const ExpenseSchema = new Schema({
     type:{type: String, default: 'income'}, 
     date:{type: Date, required: true, trim: true},
     category:{type: String, required: true, trim: true},
-    description:{type: String, maxLength: 50, trim: true}
+    description:{type: String, maxLength: 50, trim: true},
+    userID:{type: String}
 },{timestamps:true})
 
 const expenseModel = model('Expenses', ExpenseSchema);

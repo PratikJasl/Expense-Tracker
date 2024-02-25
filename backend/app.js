@@ -88,7 +88,7 @@ app.post('/logout', (req,res)=>{
 //@Create Income Endpoint.
 app.post('/addIncome', async(req,res)=>{
     console.log('Request:', req.body);
-    const {title, amount, category, description, date} = req.body;
+    const {title, amount, category, description, date, userID} = req.body;
     try{
         if(!title || !category || !date || !description){
             res.status(400).json({msg:'Fields cannot be empty'});
@@ -103,7 +103,8 @@ app.post('/addIncome', async(req,res)=>{
             amount,
             category,
             description,
-            date
+            date,
+            userID
         });
         res.status(200).json(incomeData);
         console.log('Income Added Sucessfull'); 
@@ -114,10 +115,12 @@ app.post('/addIncome', async(req,res)=>{
 });
 
 //@Get Incomes Endpoint
-app.get('/getIncome', async(req,res)=>{
+app.post('/getIncome', async(req,res)=>{
     console.log('Received Request at get Income');
     try {
-        const incomes = await incomeModel.find().sort({createdAt: -1});
+        const {userID} = req.body;
+        console.log('UserID Received is:', userID);
+        const incomes = await incomeModel.find({userID}).sort({createdAt: -1});
         res.status(200).json(incomes);
     } catch (error) {
         res.status(500).json({msg:'Failed to Get Incomes', err: error});
@@ -125,10 +128,11 @@ app.get('/getIncome', async(req,res)=>{
 });
 
 //@Get Total Income Endpoint
-app.get('/getTotalIncome', async(req,res) => {
+app.post('/getTotalIncome', async(req,res) => {
     console.log('Received Request at get Total Income');
     try {
-        const incomeArray = await incomeModel.find();
+        const {userID} = req.body;
+        const incomeArray = await incomeModel.find({userID});
         console.log('income Array:', incomeArray);
         let total = 0;
         incomeArray.forEach((income)=>{
@@ -158,7 +162,7 @@ app.post('/deleteIncome', async(req,res)=>{
 //@Create Expenses Endpoint
 app.post('/addExpenses', async(req,res)=>{
     console.log('Request:', req.body);
-    const {title, amount, category, description, date} = req.body;
+    const {title, amount, category, description, date, userID} = req.body;
     try{
         if(!title || !category || !date || !description){
             res.status(400).json({msg:'Fields cannot be empty'});
@@ -173,7 +177,8 @@ app.post('/addExpenses', async(req,res)=>{
             amount,
             category,
             description,
-            date
+            date,
+            userID
         });
         res.status(200).json(expenseData);
         console.log('Expense Added Sucessfull'); 
@@ -184,10 +189,12 @@ app.post('/addExpenses', async(req,res)=>{
 });
 
 //@Get Expenses Endpoint
-app.get('/getExpenses', async(req,res)=>{
-    console.log('Received');
+app.post('/getExpenses', async(req,res)=>{
+    console.log('Received Request at get Expense');
     try {
-        const expenses = await expenseModel.find().sort({createdAt: -1});
+        const {userID} = req.body;
+        console.log('UserID Received is:', userID);
+        const expenses = await expenseModel.find({userID}).sort({createdAt: -1});
         res.status(200).json(expenses);
     } catch (error) {
         res.status(500).json({msg:'Failed to Get Expenses', err: error});
@@ -209,10 +216,11 @@ app.post('/deleteExpenses', async(req,res)=>{
 })
 
 //@Get Total Expense Endpoint
-app.get('/getTotalExpense', async(req,res) => {
+app.post('/getTotalExpense', async(req,res) => {
     console.log('Received Request at get Total Expense');
     try {
-        const expenseArray = await expenseModel.find();
+        const {userID} = req.body;
+        const expenseArray = await expenseModel.find({userID});
         console.log('expense Array:', expenseArray);
         let total = 0;
         expenseArray.forEach((expense)=>{

@@ -1,7 +1,8 @@
-export default async function fetchExpense(){
+export default async function fetchExpense(userID){
     try{
         const response = await fetch('https://expense-tracker-api-iota.vercel.app/getExpenses',{
-            method: 'GET',
+            method: 'POST',
+            body: JSON.stringify({userID}),
             headers: {'Content-Type': 'application/json'},
             credentials: 'include' 
         })

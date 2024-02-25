@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { useRecoilState } from "recoil";
 import { ExpenseFormSubmit } from "../../Atom/selection";
+import { UserInfo } from "../../Atom/userData";
 
 export default function ExpenseForm(){
 
@@ -18,6 +19,11 @@ export default function ExpenseForm(){
 
     const { title, amount, date, category, description } = input;
 
+    const userInfo = useRecoilValue(UserInfo);
+    console.log('The Userinfo:', userInfo);
+    const userID = userInfo.id;
+    console.log('the User ID is:', userID);
+
     const handleInput = (name, value)=>{
         setInput({...input, [name]: value});
     }
@@ -27,7 +33,7 @@ export default function ExpenseForm(){
             e.preventDefault();
             const response = await fetch('https://expense-tracker-api-iota.vercel.app/addExpenses',{
                 method: 'Post',
-                body: JSON.stringify({title, amount, date, category, description}),
+                body: JSON.stringify({title, amount, date, category, description, userID}),
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include' 
             })
