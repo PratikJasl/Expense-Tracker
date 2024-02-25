@@ -22,11 +22,15 @@ app.use(cors({
 
 //@dev Connect with MongoDb.
 try{
-    mongoose.connect(`mongodb+srv://${MongoUri}`);
-    console.log('Connected to MongoDB')
+    mongoose.connect(`mongodb+srv://${MongoUri}`)
+    .then(()=>{
+        console.log('Connected to MongoDB');
+    })
+    .catch((error)=>{
+        console.log('Error Connecting with MongoDB:',error);
+    })
 }
 catch(error){
-    console.log("Error in Mongo Connection");
     console.log(`Error Connecting with Database:${error}`);
 }
 
