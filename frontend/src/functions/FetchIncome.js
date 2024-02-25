@@ -1,7 +1,7 @@
 
 export default async function fetchIncome(userID){
     try{
-        const response = await fetch('https://expense-tracker-api-iota.vercel.app/getIncome',{
+        const response = await fetch('https://expense-tracker-api-two.vercel.app/getIncome',{
             method: 'POST',
             body: JSON.stringify({userID}),
             headers: {'Content-Type': 'application/json'},

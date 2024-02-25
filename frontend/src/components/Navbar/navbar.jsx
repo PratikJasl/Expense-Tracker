@@ -10,7 +10,7 @@ export default function Navigation(){
     const username = userInfo?.username;
 
     function logout(){
-        fetch('https://expense-tracker-api-iota.vercel.app/logout',{
+        fetch('https://expense-tracker-api-two.vercel.app/logout',{
           method: 'POST',
           credentials: 'include'
         });

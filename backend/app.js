@@ -15,8 +15,10 @@ const app = express();
 
 //@dev Middlewares.
 app.use(express.json());
-app.use(cors({credentials:true, origin:'https://expense-tracker-six-alpha.vercel.app'}));
-
+app.use(cors({
+    origin:'https://expense-tracker-six-alpha.vercel.app',
+    credentials:true,
+}));
 
 //@dev Connect with MongoDb.
 try{
@@ -24,6 +26,7 @@ try{
     console.log('Connected to MongoDB')
 }
 catch(error){
+    console.log("Error in Mongo Connection");
     console.log(`Error Connecting with Database:${error}`);
 }
 
@@ -40,6 +43,7 @@ app.post('/SignUp', async(req,res)=>{
             username,
             password: bcrypt.hashSync(password,salt)
         })
+        
         res.json(userData);
         console.log('Signup Sucessfull'); 
     }

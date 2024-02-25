@@ -35,7 +35,7 @@ export default function Expenses(){
 
     async function DeleteExpense(id){
         try{
-            const response = await fetch('https://expense-tracker-api-iota.vercel.app/deleteExpenses',{
+            const response = await fetch('https://expense-tracker-api-two.vercel.app/deleteExpenses',{
                 method: 'POST',
                 body: JSON.stringify({id}),
                 headers: {'Content-Type': 'application/json'},
@@ -57,7 +57,7 @@ export default function Expenses(){
 
     async function GetTotal(){
         try {
-            const response = await fetch('https://expense-tracker-api-iota.vercel.app/getTotalExpense',{
+            const response = await fetch('https://expense-tracker-api-two.vercel.app/getTotalExpense',{
                 method: 'POST',
                 body: JSON.stringify({userID}),
                 headers: {'Content-Type': 'application/json'},

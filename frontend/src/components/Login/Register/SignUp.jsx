@@ -11,7 +11,7 @@ export default function SignUp(){
     async function Register(ev){
         try{
             ev.preventDefault();
-            await fetch('https://expense-tracker-api-iota.vercel.app/SignUp',{
+            await fetch('https://expense-tracker-api-two.vercel.app/SignUp',{
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-Type': 'application/json'}
